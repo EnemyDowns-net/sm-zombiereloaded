@@ -373,16 +373,13 @@ void WeaponsOnClientSpawn(int client)
  *
  * @param client    The client index.
  */
-void ZMarketOnClientSpawnPost(int client)
+void WeaponsOnClientSpawnPost(int client)
 {
-    // Reset purchase counts for client.
-    ZMarketResetPurchaseCount(client);
+    // Refresh all weapons on clients to cleanup any rendering errors.
+    WeaponsRefreshAllClientWeapons(client);
 
-    // Rebuy if auto-rebuy is enabled.
-    bool rebuy = GetConVarBool(g_hCvarList.CVAR_WEAPONS_ZMARKET_REBUY);
-
-    if(rebuy)
-        ZMarketCheckRebuy(client);
+    // Forward event to sub-modules.
+    ZMarketOnClientSpawnPost(client);
 }
 
 /**
