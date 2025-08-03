@@ -549,6 +549,11 @@ stock void RestrictSetWeaponRestricted(int index, bool toggle, bool restrict = f
  */
 stock bool RestrictIsWeaponRestricted(int index)
 {
+    if(index < 0 || index >= GetArraySize(arrayWeapons))
+    {
+        return false;
+    }
+    
     // Get array handle of weapon at given index.
     Handle arrayWeapon = GetArrayCell(arrayWeapons, index);
 
